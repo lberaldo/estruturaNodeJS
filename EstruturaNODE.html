@@ -1,0 +1,61 @@
+Comecando um projeto com node JS.
+
+
+1-Criar a pasta do projeto - mkdir projetoNodeJS
+
+2-Entrar dentro da pasta e rodar o comando: NPM INIT
+	2.1- Isso irá criar o package.json, preencher os dados e dps rodar YES.
+	2.2- Instalar o express.
+	2.2.1- npm install express --save
+	2.2.2- instalar o view engine EJS.
+
+	//O EJS é um arquivo html com js, serve para validações JS dentro do proprio html.
+	3.1.5- npm install ejs -- save
+
+	2.= Criar a pasta config e o arquivo express.js
+	2=.1 - exportar a função do express com a view engine.
+
+	//Importa o modulo do express.
+	module.exports = function() {
+	    var app = require('express')();
+
+	    //define o tipo de arquivo front q vamos usar, jade, etc.
+	    app.set('view engine', 'ejs');
+
+	    return app; 
+	}
+
+
+
+--- TODOS OS PASSOS A SEGUIR, DEVEM SER FEITOS DENTRO DA APP.JS E DO ARQUIVO EJS CRIADO DENTRO DE VIEWS. --- 
+
+
+3-Criar o arquivo app.js na raiz do projeto, onde importaremos o express da pasta config, express e criaremos a primeira rota.
+
+	3.1- Dentro do arquivo app.js, importar o express da pasta './config/expres'().
+
+	3.1.3- var app = require ('./config/expres')();
+
+	//Importa as rotas criadas para o app.js
+	3.1.4 - var rotasProdutos = require ('routes/produtos')(app);
+
+4-Criando a primeira rota com express.
+	4.1- Após instanciar o express dentro da var app(3.1.3), temos acesso aos metodos do express, primeiro vamos criar uma rota do tipo GET.
+
+	//CRIAR UMA PASTA CHAMADA VIEWS/PRODUTOS/lista, ONDE TERÁ TODOS OS ARQUIVOS EJS, OU SEJA OS HTML.
+
+	//Esta rota vai retornar uma página caso seja acessado /produtos.
+	app.get('/produtos', function(request, response){
+	response.render("produtos/lista")
+	})
+
+5-Definindo a porta que a aplicação vai trabalhar
+	5.1-app.listen(3000, function(){
+	,Mconsole.log('backend Funcionando!')
+	});
+
+//----------APÓS FAZER ESTES PASSOS, O SERVIDOR NODE JA VAI FUNCIONAR ---------//
+
+6-Trabalhando com nodemon, para atualização automatica dos arquivos.
+6.1- npm install -g nodemon
+6.1.2- inicializando o back com nodemon: nodemon app.js
